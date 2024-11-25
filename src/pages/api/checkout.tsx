@@ -43,7 +43,7 @@ export default async function checkout(req: NextApiRequest, res: NextApiResponse
                         mode: 'payment', 
                     });
 
-                    return res.status(200).json({sucesso: "ok", id: session.id})
+                    return res.status(200).json({sucesso: "ok", checkout: session})
 
                 }
 
