@@ -3,7 +3,7 @@
 export default function Home() {
 
   const checkout = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>)=>{
-    
+    e.preventDefault();
   }
 
   return (
