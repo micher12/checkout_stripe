@@ -2,3 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 
+*{
+    font-family: "Inter";
+}
+
+.container{
+    max-width: 1140px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 2%;
+}
+
+.box{
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 68px rgba(36, 38, 114, 0.11);
+    padding: 20px 2%;
+}
+
+.transition{
+    transition: all .4s ease;
+}
+
+.scaleBtn:hover{
+    transform: scale(1.02) translateY(-1px);
+}
+
