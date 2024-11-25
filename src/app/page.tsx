@@ -1,9 +1,27 @@
 "use client";
 
+import getStripeToken from "./components/getStripeToken";
+
 export default function Home() {
 
-  const checkout = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>)=>{
+  const checkout =  async (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>)=>{
     e.preventDefault();
+
+    const token = await getStripeToken();
+
+    const api = await fetch("api/checkout",{
+      method: "POST",
+      headers:{
+        "Content-type":"application/json",
+        "x-key":`Bearer ${token}`
+      }
+    });
+
+    const status = api.status;
+    const response = await api.json();
+
+    console.log(response);
+
   }
 
   return (

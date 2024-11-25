@@ -12,26 +12,30 @@ export default async function checkout(req: NextApiRequest, res: NextApiResponse
                 if(key === process.env.STRIPE_API){
                     const stripe = new Stripe(process.env.STRIPE_SECRET as string);
 
-                    const price = await stripe.prices.create({
-                        currency: 'brl',
-                        unit_amount: 1000,
-                        product_data: {
-                          name: 'Gold Plan',
-                          active: true,
-                          metadata: {
-                            "Cor": "azul"
-                          },
-                          statement_descriptor: "Camiseta preta", //max 22 char
-                        },
+                    // const price = await stripe.prices.create({
+                    //     currency: 'brl',
+                    //     unit_amount: 1000,
+                    //     product_data: {
+                    //       name: 'Gold Plan',
+                    //       active: true,
+                    //       metadata: {
+                    //         "Cor": "azul"
+                    //       },
+                    //       statement_descriptor: "Camiseta preta", //max 22 char
+                    //     },
                        
-                    });
+                    // });
+
+                    //criar api so para cadastro de "produtos/preço"
+
+                    //criar api so para verificar id's de checkouts
 
                     const session = await stripe.checkout.sessions.create({
                         currency: "brl",
-                        success_url: `${document.location.href}`,
+                        success_url: `http://localhost:3000/`,
                         line_items: [
                           {
-                            price: price.id,
+                            price: "price_1QPAhGHLlhy3kNEIF3izcmBU",
                             quantity: 2,
                           },
                         ],
