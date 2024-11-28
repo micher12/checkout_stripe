@@ -20,7 +20,9 @@ export default function Home() {
     const status = api.status;
     const response = await api.json();
 
+    console.log("status: "+status);
     console.log(response);
+   
 
   }
 

@@ -1,7 +1,7 @@
 "use server";
 
 import { NextApiRequest, NextApiResponse } from "next";
-import {Stripe} from "stripe";
+import Stripe from "stripe";
 
 export default async function createproduto(req: NextApiRequest, res: NextApiResponse){
 
@@ -31,24 +31,23 @@ export default async function createproduto(req: NextApiRequest, res: NextApiRes
 
                     const name = body.nome as string;
                     const preco = body.preco as number;
-                    const metadata = body.metadata as {};
+                    const metadata: Stripe.MetadataParam = body.metadata;
                     const description = body.descricao as string;
 
                     const stripe = new Stripe(process.env.STRIPE_SECRET as string);
 
-                    const price = await stripe.prices.create({
-                        currency: 'brl',
-                        unit_amount: preco, // 200 = R$ 2
-                        product_data: {
-                          name: name,
-                          active: true,
-                          metadata: metadata,
-                          statement_descriptor: description, //max 22 char
+                    const product = await stripe.products.create({
+                        name: name,
+                        description: description,
+                        metadata: metadata,
+                        default_price_data: {
+                            currency: "brl",
+                            unit_amount: preco
                         },
-                        
-                    });
+                        images: ["https://code12.vercel.app/icon.png"] //listas de imagens
+                      });
 
-                    return res.status(200).json({sucesso: "ok", price_id: price.id})
+                    return res.status(200).json({sucesso: "ok", price_id: product})
                 }
 
                 return res.status(401).json({erro:"Inválido"});
