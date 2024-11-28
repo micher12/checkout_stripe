@@ -9,7 +9,7 @@ export default function Home() {
 
     const token = await getStripeToken();
 
-    const api = await fetch("api/checkout",{
+    const api = await fetch("api/getcheckout",{
       method: "POST",
       headers:{
         "Content-type":"application/json",
