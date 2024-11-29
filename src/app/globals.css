@@ -28,3 +28,12 @@
     transform: scale(1.02) translateY(-1px);
 }
 
+.skeleton {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.skeleton-content {
+
+}
+  

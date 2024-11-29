@@ -47,7 +47,7 @@ export default async function createproduto(req: NextApiRequest, res: NextApiRes
                         images: ["https://code12.vercel.app/icon.png"] //listas de imagens
                       });
 
-                    return res.status(200).json({sucesso: "ok", price_id: product})
+                    return res.status(200).json({sucesso: "ok", product: product})
                 }
 
                 return res.status(401).json({erro:"Inválido"});

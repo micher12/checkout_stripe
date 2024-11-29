@@ -12,7 +12,14 @@ export default async function checkout(req: NextApiRequest, res: NextApiResponse
                 if(key === process.env.STRIPE_API){
 
                     const body = req.body;
+                    /* body example
+                    {
+                        "price_id": "price_1QQFRwHLlhy3kNEIsRBsxLlk",
+                        "quantidade": 3
+                    }
+                    */
                     if(!body) return res.status(405).json({erro: "Body not found"});
+                    
 
                     const price = body.price_id as string;
                     const qnt = body.quantidade as number;
